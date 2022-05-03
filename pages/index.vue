@@ -1,6 +1,6 @@
 <template>
   <div class="wrapper">
-    <div class="info px-4 pb-12 text-center w-full lg:w-1/2 border-r relative lg:fixed top-0 left-0 h-full">
+    <div class="info px-4 pb-12 text-center w-full lg:w-1/2 lg:border-r relative lg:fixed top-0 left-0 h-full">
       <div class="pt-16 flex flex-col justify-start items-center">
         <p class="mb-16">
           A simple lorem ipsum generator based on <a class="text-red lg:hover:text-black transition-colors duration-300" href="https://www.canopycanopycanopy.com/contents/international_art_english" target="_blank" rel="noreferrer">International Art English</a>.
@@ -62,12 +62,16 @@
           </div>
         </form>
       </div>
+
+      <div class="hidden lg:flex absolute bottom-0 left-0 w-full p-8 justify-center border-t">
+        <p>© Copyright {{ new Date().getFullYear() }} Artspeak Ipsum</p>
+      </div>
     </div>
 
     <div class="content flex justify-end">
       <div class="w-full lg:w-1/2 p-4 lg:p-16 flex flex-wrap lg:flex-nowrap items-start mb-20 lg:mb-10 relative">
         <div class="w-full order-2 lg:order-1 mb-80">
-          <div v-if="result" class="gradient"></div>
+          <div v-if="result" class="gradient hidden lg:block"></div>
 
           <div v-if="result" class="copy-button-container flex mb-16 items-start">
             <button
@@ -92,6 +96,10 @@
           ></p>
         </div>
       </div>
+    </div>
+
+    <div class="flex lg:hidden w-full p-8 justify-center border-t">
+      <p>© Copyright {{ new Date().getFullYear() }} Artspeak Ipsum</p>
     </div>
 
     <div id="copy-overlay" class="fixed top-0 left-0 w-full h-full flex justify-center items-center pointer-events-none">
@@ -175,7 +183,9 @@ export default {
 
 <style scoped>
   .wrapper {
-    padding: 6.3rem 0 0 0;
+    @media screen and (min-width: theme('screens.lg')) {
+      padding: 6.3rem 0 0 0;
+    }
   }
 
   .info {
@@ -195,7 +205,11 @@ export default {
 
   .copy-button-container {
     position: sticky;
-    top: 10.3rem;
+    top: 2rem;
+
+    @media screen and (min-width: theme('screens.lg')) {
+      top: 10.3rem;
+    }
   }
 
   .copy-enter {

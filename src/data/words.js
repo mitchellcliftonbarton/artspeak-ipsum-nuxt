@@ -223,7 +223,12 @@ const words = [
   'smart contract',
   'aura',
   'artist-run',
-  'coded as'
+  'coded as',
+  'overshadowed by',
+  'vanitas',
+  'symbol',
+  'low-fi',
+  'defanged'
 ]
 
 export default words
