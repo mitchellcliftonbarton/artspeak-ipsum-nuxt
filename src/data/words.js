@@ -228,7 +228,17 @@ const words = [
   'vanitas',
   'symbol',
   'low-fi',
-  'defanged'
+  'defanged',
+  'tech',
+  'technological',
+  'AI',
+  'ChatGPT generated',
+  'the artist\'s hand',
+  'tour de force',
+  'locality',
+  'artificial intelligence',
+  'F Stop',
+  'entropic'
 ]
 
 export default words

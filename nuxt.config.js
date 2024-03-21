@@ -61,6 +61,14 @@ export default {
       }
     ],
     link: [{ rel: 'icon', type: 'image/png', href: '/favicon.png' }],
+    script: [
+      {
+        src: 'https://github.com/devongovett/pdfkit/releases/download/v0.8.0/pdfkit.js'
+      },
+      {
+        src: 'https://github.com/devongovett/blob-stream/releases/download/v0.1.3/blob-stream.js'
+      }
+    ]
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css

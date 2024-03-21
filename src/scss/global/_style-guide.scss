@@ -54,3 +54,9 @@ html {
     }
   }
 }
+
+.wrapper {
+  @media screen and (min-width: theme('screens.lg')) {
+    padding: 6.3rem 0 0 0;
+  }
+}

@@ -3,10 +3,10 @@
     <div class="info px-4 pb-12 text-center w-full lg:w-1/2 lg:border-r relative lg:fixed top-0 left-0 h-full">
       <div class="pt-16 flex flex-col justify-start items-center">
         <p class="mb-16">
-          A simple lorem ipsum generator based on <a class="text-red lg:hover:text-black transition-colors duration-300" href="https://www.canopycanopycanopy.com/contents/international_art_english" target="_blank" rel="noreferrer">International Art English</a>.
+          A simple lorem ipsum generator based on <a class="text-red lg:hover:text-black" href="https://www.canopycanopycanopy.com/contents/international_art_english" target="_blank" rel="noreferrer">International Art English</a>.
           <br/>
           <br/>
-          Made by <a class="text-red lg:hover:text-black transition-colors duration-300" href="https://mitchellbarton.com" target="_blank" rel="noreferrer">Mitchell Barton</a>
+          Made by <a class="text-red lg:hover:text-black" href="https://mitchellbarton.com" target="_blank" rel="noreferrer">Mitchell Barton</a>
         </p>
 
         <div class="w-40 border-b"></div>
@@ -21,7 +21,7 @@
                   v-for="n in 5"
                   :key="n"
                   @click.prevent="build(n, true)" 
-                  class="bg-red text-white py-2 px-5 mx-4 rounded-lg lg:hover:bg-black transition-colors duration-300"
+                  class="bg-red text-white py-2 px-5 mx-4 lg:hover:bg-black"
                 >{{ n }}</button>
               </div>
             </div>
@@ -33,30 +33,30 @@
             <label class="mr-2" htmlfor="paragraphs">Paragraphs:</label>
             <input
               v-model.number="paragraphsNum"
-              class="border p-2 rounded-lg text-black mr-4 w-16"
+              class="border p-2 text-black mr-4 w-16"
               type="number"
               name="paragraphs"
               v-on:change="check()"
             />
             <button 
               @click.prevent="decrease()" 
-              class="bg-red text-white py-2 px-4 rounded-lg lg:hover:bg-black transition-colors duration-300"
+              class="bg-red text-white py-2 px-4 lg:hover:bg-black"
             >-</button>
             <button 
               @click.prevent="increase()"
-              class="bg-red text-white py-2 px-4 rounded-lg lg:hover:bg-black transition-colors duration-300"
+              class="bg-red text-white py-2 px-4 lg:hover:bg-black"
             >+</button>
           </div>
           <div className="form-section flex">
             <button 
               @click.prevent="build()" 
-              class="bg-red text-white p-2 rounded-lg lg:hover:bg-black transition-colors duration-300 mr-2"
+              class="bg-red text-white p-2 lg:hover:bg-black mr-2"
               type="submit"
             >BUILD</button>
 
             <button 
               @click.prevent="build(false, true)" 
-              class="bg-red text-white p-2 rounded-lg lg:hover:bg-black transition-colors duration-300"
+              class="bg-red text-white p-2 lg:hover:bg-black"
               type="submit"
             >BUILD & COPY</button>
           </div>
@@ -69,20 +69,15 @@
     </div>
 
     <div class="content flex justify-end">
-      <div class="w-full lg:w-1/2 p-4 lg:p-16 flex flex-wrap lg:flex-nowrap items-start mb-20 lg:mb-10 relative">
+      <div class="w-full lg:w-1/2 px-6 lg:px-16 pt-16 flex flex-wrap lg:flex-nowrap items-start mb-20 lg:mb-10 relative">
         <div class="w-full order-2 lg:order-1 mb-80">
-          <div v-if="result" class="gradient hidden lg:block"></div>
-
-          <div v-if="result" class="copy-button-container flex mb-16 items-start">
-            <button
-              @click.prevent="handleCopy()" 
-              class="copy-button bg-red text-white p-2 rounded-lg lg:hover:bg-black transition-colors duration-300 mr-4"
-            >COPY</button>
-
-            <transition name="copy" mode="out-in">
-              <div v-if="copied" class="copied bg-grey text-black p-2 rounded-lg">COPIED!</div>
-            </transition>
-          </div>
+          <button 
+            v-if="result" 
+            class="copy-button-container text-center w-full py-6 bg-red text-white lg:hover:bg-black cursor-pointer mb-16"
+            @click.prevent="handleCopy()"
+          >
+            {{ copied ? 'COPIED!' : 'COPY' }}
+          </button>
 
           <p 
             v-if="result" 
@@ -103,13 +98,11 @@
     </div>
 
     <div id="copy-overlay" class="fixed top-0 left-0 w-full h-full flex justify-center items-center pointer-events-none">
-      <transition name="copy" mode="out-in">
-        <div
-          v-if="copiedFromBuild"
-          @click.prevent="handleCopy()" 
-          class="copy-button bg-red text-white p-2 rounded-lg"
-        >{{ copiedFromBuildText }}</div>
-      </transition>
+      <div
+        v-if="copiedFromBuild"
+        @click.prevent="handleCopy()" 
+        class="copy-button bg-red text-white p-2"
+      >{{ copiedFromBuildText }}</div>
     </div>
   </div>
 </template>
@@ -166,7 +159,7 @@ export default {
 
         setTimeout(() => {
           this.copiedFromBuild = false
-        }, 1000)
+        }, 1500)
       }
     },
     handleCopy () {
@@ -182,12 +175,6 @@ export default {
 </script>
 
 <style scoped>
-  .wrapper {
-    @media screen and (min-width: theme('screens.lg')) {
-      padding: 6.3rem 0 0 0;
-    }
-  }
-
   .info {
     padding-top: 6.3rem;
   }
@@ -205,11 +192,7 @@ export default {
 
   .copy-button-container {
     position: sticky;
-    top: 2rem;
-
-    @media screen and (min-width: theme('screens.lg')) {
-      top: 10.3rem;
-    }
+    top: 63px;
   }
 
   .copy-enter {
@@ -230,11 +213,6 @@ export default {
   .copy-leave-to {
     opacity: 0;
     transform: translateY(-10px);
-  }
-
-  .copy-leave-active,
-  .copy-enter-active {
-    transition: opacity .3s, transform .3s;
   }
 
   .gradient {
